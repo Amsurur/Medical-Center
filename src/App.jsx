@@ -1,16 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./App.css";
+import Layout from "./Layout/Layout"
+import About from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile"
+
+import Favorites from "./pages/Favorites/Favorites";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+
+  const wifi = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <About />,
+        },
+        {
+          path: "/favorites",
+          element: <Favorites />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+      ],
+    },
+  ]);
+
+
 
   return (
     <>
-  
+      <RouterProvider router={wifi} />
     </>
-  )
+  );
 }
 
 export default App
